@@ -1,3 +1,7 @@
+<?php
+include 'session.php';
+  include '../db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -387,42 +391,40 @@
                 </tr>
               </thead>
               <tbody>
+                <?php
+                        $no = 1;
+                        $admin_id = $_SESSION['id_login'];
+                        $produk = mysqli_query($conn, "SELECT t_cart.id_product, (jml*product_price) AS total, id_cart, category_name, product_name, product_price, product_image, jml FROM t_product, t_category, t_cart WHERE t_category.id_category = t_product.id_category AND t_cart.id_product = t_product.id_product AND id_admin = $admin_id");
+                        if($produk->num_rows == 0 ){
+                            ?>
+                                <tr>
+                                    <td colspan="8" style="padding: 5px;"><b>Tidak ada data</b></td>
+                                </tr>
+                            <?php
+                        }else{
+                        while ($row = mysqli_fetch_array($produk)) {
+                        ?>
                 <tr>
                   <td class="product-info">
-                    <div class="product-image"></div>
+                    <div class="product-image" style="background-image: url('../produk/<?php echo $row['product_image']?>');"></div>
                     <div class="product-details">
-                      <div class="product-title">Product Name</div>
+                      <div class="product-title"><?php echo $row['product_name'] ?></div>
                       <div class="product-description">This is a brief description.</div>
                     </div>
                   </td>
-                  <td>$49.99</td>
+                  <td style="text-transform: capitalize;">Rp.<?php echo number_format($row['total']) ?></td>
                   <td>
                     <div class="quantity-control">
                       <button>-</button>
-                      <input type="number" value="1" min="1">
+                      <input type="number" value="<?php echo $row['jml'] ?>" min="1">
                       <button>+</button>
                     </div>
-                    <a href="#" class="remove-link">remove</a>
+                    <a href="hapus_proses.php?idc=<?php echo $row['id_cart'] ?>" onclick="return confirm('Yakin Ingin Hapus?')" class="remove-link">remove</a>
                   </td>
                 </tr>
-                <tr>
-                  <td class="product-info">
-                    <div class="product-image"></div>
-                    <div class="product-details">
-                      <div class="product-title">Product Name</div>
-                      <div class="product-description">This is a brief description.</div>
-                    </div>
-                  </td>
-                  <td>$49.99</td>
-                  <td>
-                    <div class="quantity-control">
-                      <button>-</button>
-                      <input type="number" value="1" min="1">
-                      <button>+</button>
-                    </div>
-                    <a href="#" class="remove-link">remove</a>
-                  </td>
-                </tr>
+                <?php
+                }}
+                ?>
                 <!-- Tambah produk kedua di sini -->
               </tbody>
             </table>

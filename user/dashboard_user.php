@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include '../db.php'
 ?>
 <!DOCTYPE html>
@@ -114,7 +115,7 @@
         }
         .product-display > a{
             all: unset;
-            cursor: zoom-in;
+            cursor: pointer;
             z-index: 3;
         }
         .item{
@@ -247,7 +248,7 @@
                             while ($p = mysqli_fetch_array($produk)) {
                                 if($batas < 5){
                         ?>
-                            <a href="item-a">
+                            <a href="detail_produk.php?p_id=<?php echo $p['id_product']?>" >
                                 <div class="item">
                                     <p><?php echo $p['product_name'] ?></p>
                                     <div class="image"><img src='../produk/<?php echo $p['product_image']?>' alt=""></div>

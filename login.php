@@ -1,77 +1,6 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        #bg-login{
-            background-image: url(https://img.freepik.com/premium-vector/vector-mosaic-seamless-pattern-with-contour-geometric-shapes-retro-memphis-style-fashion-8090s_547648-1039.jpg?semt=ais_hybrid);
-            background-size:   20rem;
-        }
-    </style>
-</head>
-<body id="bg-login">
-    <div class="box-login">
-    <div class="logo">
-        <img src="./connecta.png" alt="">
-    </div>
-        <h3>login:</h3>
-        <form action="" method="post">
-            <input type="text" name="user" placeholder="Username" class="input-control"></input>
-            <input type="password" name="pass" placeholder="Password" class="input-control"></input>
-            <input type="submit" name="submit" value="login" class="btn"></input>
-            <p>
-                <label>Belum punya akun?</label><a href="register.php"><strong>Klik Disini Untuk Daftar</strong></a>
-            </p>
-        </form>
-        <?php
-            include "db.php";
-            if(isset($_POST["submit"])){
-                $username = $_POST["user"];
-                $password = $_POST["pass"];
-                
-                // $query = "SELECT * FROM t_admin WHERE username='$username' AND password='$password'";
-                $sql = mysqli_query($conn, "SELECT * FROM t_admin WHERE username='$username' AND password='$password'");
-                // or die(mysqli_error());
-                if(mysqli_num_rows($sql) == 0){
-                    echo "
-                    <script>
-                        alert('username atau password anda salah');
-                        window.location = 'login.php';
-                    </script>";
-                }else{
+<?php
                     session_start();
-                    $row = mysqli_fetch_assoc($sql);
-                    $_SESSION['id_login'] = $row['admin_id'];
-                    $_SESSION['level'] = $row['level'];
-                    $_SESSION['status_login'] = true;
-                    
-                    if($row['level'] == 'admin'){
-                        echo "
-                        <script>
-                            alert('Login Sukses');
-                            window.location = 'admin/dashboard.php';
-                        </script>
-                        ";
-                    }elseif($row["level"] = "pelanggan"){
-                        echo "
-                        <script>
-                            alert('Login Sukses');
-                            window.location = 'user/dashboard_user.php';
-                        </script>
-                        ";
-                    }else{
-                        header('location:index.php');
-                    }
-                }
-            }
-        ?>
-    </div>
-</body>
-</html> -->
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -437,9 +366,8 @@
                         window.location = 'login.php';
                     </script>";
                 }else{
-                    session_start();
                     $row = mysqli_fetch_assoc($sql);
-                    $_SESSION['id_login'] = $row['admin_id'];
+                    $_SESSION['id_login'] = $row['id_admin'];
                     $_SESSION['level'] = $row['level'];
                     $_SESSION['status_login'] = true;
                     

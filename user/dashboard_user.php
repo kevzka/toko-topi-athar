@@ -1,5 +1,5 @@
 <?php
-    session_start();
+include 'session.php';
     include '../db.php'
 ?>
 <!DOCTYPE html>
@@ -92,7 +92,7 @@
             height: 2px;
             background-color: black;
         }
-        .contain > .bar .view-all{
+        .view-all{
             background-color: black;
             color: white;
             display: inline-block;
@@ -101,6 +101,7 @@
             font-family: Impact, 'Arial Black', sans-serif;
             font-size: 1rem;
             padding: 10px 10px;
+    box-sizing: border-box;
         }
         .contain > .product-display{
             position: relative;
@@ -208,18 +209,95 @@
   border-color: #007bff;
 }
 
+.slider-container {
+    height: 100%;
+    z-index: 0;
+    position: relative;
+    width: 100%;
+    /* max-width: 600px; */
+    margin: 0;
+    overflow: hidden;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: background 0.3s;
+    -webkit-transition: background 0.3s;
+    -moz-transition: background 0.3s;
+    -ms-transition: background 0.3s;
+    -o-transition: background 0.3s;
+}
+
+.dot.active {
+    background-color: rgba(255, 255, 255, 1);
+}
+.header > .bar{
+    z-index: 3;
+    position: absolute;
+    top: 0;
+}
+.item > .image, .view-all{
+    transition: all 0.2s ease-in;
+}
+.item > .image:hover{
+    transform: translateY(-10px);
+}
+.view-all:hover{
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+}
+
     </style>
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'>
 </head>
 <body>
     <div class="container">
         <div class="header">
+            <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide"><img src="../gambar/slider1.jpg" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/1016/600/250" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/1018/600/250" alt=""></div>
+                <div class="slide"><img src="https://picsum.photos/id/1019/600/250" alt=""></div>
+            </div>
+            <div class="dots" id="dots"></div>
+        </div>
             <div class="bar">
                 <img src="../gambar/logo.png" alt="">
                 <div class="icons">
                     <div class="fa-solid fa-heart"></div>
                     <div class="fa-solid fa-cart-shopping icon" onclick="window.location = 'cart.php'"></div>
                     <div class="fa-solid fa-user icon"></div>
+                    <div class="fa fa-right-from-bracket fa-lg pad" onclick="window.location = '../logout.php'"></div>
                 </div>
                 <div class="line"></div>
             </div>
@@ -236,7 +314,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="view-all">view all</div>
+                <div class="view-all" onclick="window.location='product_user.php'" style="cursor: pointer;" >view all</div>
                 <div class="line"></div>
             </div>
             <div class="product-display">
@@ -270,6 +348,10 @@
             </div>
         </div>
     </div>
+                <script src="../js/script.js"></script>
+                <script>
+        sliderBanner();
+        </script>
     
 </body>
 </html>

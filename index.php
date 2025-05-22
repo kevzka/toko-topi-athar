@@ -91,7 +91,7 @@
       width: max-content;
       height: 54.5px;
       background-color: black;
-      z-index: 9999;
+      z-index: 99;
       transform-origin: 100% 100%; /* kanan bawah */
       transform: rotate(-90deg);
     }
@@ -176,6 +176,13 @@
     img{
       width: 100%;
     }
+    .footer{
+      position: absolute;
+      width: 100%;
+      height: 200px;
+      background-color: black;
+      z-index: 9999999;
+    }
     </style>
     <style>
       @keyframes blink {
@@ -195,7 +202,7 @@
   <div class="line">
       E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design 
   </div>
-  <div class="container">
+  <div class="container"  onclick="window.location = 'user/dashboard_user.php'">
     <div class="logo">
       <img src="gambar/logo.png" alt="">
     </div>
@@ -235,6 +242,7 @@
       </div>
     </div>
   </div>
+  <div class="footer"></div>
   <script>
         AOS.init({
             once: true // 👈 hanya fade sekali

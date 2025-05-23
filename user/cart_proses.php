@@ -1,6 +1,5 @@
 <?php
     include "../db.php";
-    var_dump($_POST);
     if(isset($_POST['submit'])){
         $jml = $_POST['quantity'];
         $product_id = $_POST['product_id'];

@@ -81,29 +81,34 @@
             top: calc(187px);
             right: -37px;
         }
+        .item > .image{
+    transition: all 0.2s ease-in;
+}
+.item > .image:hover{
+    transform: translateY(-10px);
+}
     </style>
+     <!-- AOS CSS & JS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="product-display">
                 <?php
-                    $batas = 0;
                     $where = "";
                      $produk = mysqli_query($conn, "SELECT * FROM t_product p JOIN t_category c ON p.id_category = c.id_category WHERE p.product_status = 1 $where");
                         if (mysqli_num_rows($produk) > 0) {
                             while ($p = mysqli_fetch_array($produk)) {
-                                if($batas < 5){
                         ?>
                             <a href="detail_produk.php?p_id=<?php echo $p['id_product']?>" >
-                                <div class="item">
+                                <div class="item" data-aos="fade-up" data-aos-duration="1500">
                                     <p><?php echo $p['product_name'] ?></p>
                                     <div class="image"><img src='../produk/<?php echo $p['product_image']?>' alt=""></div>
                                     <p style="text-transform: capitalize; margin-top: 20px; font-size: 1.2rem;">Rp.<?php echo number_format($p['product_price']) ?></p>
                                 </div>
                             </a>
                             <?php
-                                }
-                                $batas++;
                             }
                         }
                         ?>
@@ -115,5 +120,10 @@
                 </div>
             </div>
     </div>
+    <script>
+        AOS.init({
+            once: true // 👈 hanya fade sekali
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,250 @@
+html,
+body {
+	scroll-snap-type: y mandatory;
+	scroll-behavior: smooth;
+}
+::-webkit-scrollbar {
+	display: none;
+}
+body {
+	margin: 0;
+	font-family: "Arial Black", sans-serif;
+}
+.container {
+	position: relative;
+	width: 100%;
+	padding-right: 53.5px;
+	box-sizing: border-box;
+}
+
+.container .logo {
+	margin: 10px;
+	position: absolute;
+	z-index: 2;
+}
+
+.container .logo img {
+	width: 200px;
+}
+
+.container .img {
+	/* scroll-snap-align: start; */
+	padding-right: 54.5px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-image: url("../gambar/bg-index.jpg");
+	/* background-size: cover; */
+	background-size: calc(100% + 30% + 9px);
+	background-position: 50% 0;
+	background-color: red;
+	box-sizing: border-box;
+}
+
+.container .img .teks-I {
+	font-family: Impact, "Arial Black", sans-serif;
+	font-size: 2.5rem;
+	position: absolute;
+	color: white;
+	text-transform: uppercase;
+	bottom: 100px;
+	left: calc(35%);
+}
+
+.container .img .stroke-text {
+	position: relative;
+	left: 20px;
+	top: calc(50% - 100px);
+	width: 100%;
+	height: 101.33px;
+	overflow: hidden;
+}
+.container .img .stroke-text .teks {
+	position: absolute;
+	left: 100px;
+	font-size: 4.5rem;
+	color: transparent;
+	-webkit-text-stroke: 3px white;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+	text-align: center;
+	transform: scaleX(1.2);
+}
+
+.container .img .stroke-text .teks:nth-child(2) {
+	top: calc(10px);
+	left: calc(100px + 10px);
+}
+.line {
+	line-height: 54.5px;
+	position: absolute;
+	top: -70px;
+	right: 0;
+	text-transform: uppercase;
+	color: white;
+	width: max-content;
+	height: 54.5px;
+	background-color: black;
+	z-index: 99;
+	transform-origin: 100% 100%; /* kanan bawah */
+	transform: rotate(-90deg);
+}
+
+.section {
+	scroll-snap-align: none;
+	position: relative;
+	overflow: hidden;
+	box-sizing: border-box;
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-color: white;
+}
+
+.section .box {
+	position: absolute;
+	width: 25rem;
+	height: 70%;
+	border: 3px solid black;
+	padding: 20px 50px;
+	box-sizing: border-box;
+}
+
+.section-section .section:nth-child(1) .box:nth-of-type(2) {
+	top: 40px;
+	left: 40px;
+}
+
+.section-section .section:nth-child(1) .box:nth-of-type(3) {
+	bottom: 40px;
+	right: 40px;
+}
+.section-section .section:nth-child(2) .box:nth-of-type(2) {
+	bottom: 40px;
+	left: 40px;
+}
+
+.section-section .section:nth-child(2) .box:nth-of-type(3) {
+	top: 40px;
+	right: 40px;
+}
+
+.section .box .image {
+	width: 100%;
+	height: 80%;
+}
+
+.section .box {
+	background-color: white;
+	position: absolute;
+	z-index: 5;
+}
+
+.section:nth-child(1) .box:nth-of-type(2) .image {
+	background-image: url("../gambar/winter.jpg");
+	background-size: cover;
+}
+
+.section:nth-child(1) .box:nth-of-type(3) .image {
+	background-image: url("../gambar/spring.jpg");
+	background-size: cover;
+}
+
+.section:nth-child(2) .box:nth-of-type(2) .image {
+	background-image: url("../gambar/summer\ \(2\).jpg");
+	background-size: cover;
+}
+
+.section:nth-child(2) .box:nth-of-type(3) .image {
+	background-image: url("../gambar/fall.jpg");
+	background-size: cover;
+}
+
+.section .box .teks-I {
+	margin-top: 20px;
+	font-size: 2.5rem;
+	letter-spacing: -4px;
+}
+
+.chain1 {
+	position: absolute;
+	top: -8rem;
+	right: 0;
+	width: 400px;
+	z-index: 2;
+}
+
+.chain2 {
+	position: absolute;
+	bottom: -10rem;
+	right: -21rem;
+	width: 600px;
+	z-index: 2;
+}
+
+img {
+	width: 100%;
+}
+.footer {
+	position: absolute;
+	width: 100%;
+	height: 200px;
+	background-color: black;
+	z-index: 9999999;
+}
+.section-section {
+	position: relative;
+}
+.acces {
+	top: 0;
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.acces > img {
+	position: absolute;
+	width: 150px;
+}
+.acces > img:nth-child(1) {
+	scale: 1.2;
+	left: 150px;
+	top: 510px;
+}
+.acces > img:nth-child(2) {
+	scale: 1.2;
+	left: 150px;
+	top: 730px;
+}
+.acces > img:nth-child(3) {
+	scale: 1.2;
+	right: 150px;
+	bottom: 545px;
+}
+.section-section .section > img {
+	z-index: 6;
+	position: absolute;
+	width: 250px;
+}
+.section-section .section:nth-child(1) > img:nth-child(2) {
+	top: 60px;
+	right: 300px;
+	transform: rotate(93.6deg);
+}
+.section-section .section:nth-child(1) > img:nth-child(3) {
+	top: -60px;
+	left: -70px;
+	rotate: 70deg;
+}
+.section-section .section:nth-child(2) > img:nth-child(2) {
+	top: 50px;
+	left: -70px;
+	rotate: -35.5deg;
+}
+.section-section .section:nth-child(2) > img:nth-child(3) {
+	top: -25px;
+	right: 300px;
+	scale: 1.2;
+	rotate: 18.6deg;
+}

@@ -32,7 +32,7 @@ include '../db.php';
                                 <p>we are getting started on your order right away, and you will receive an order confirmation shortly to your email. explore the latest fashion and get inspired by
                                     new trends just head over to <a href="product_user.php">cappin’s product page</a></p>
                             </div>
-                            <button onclick="window.location = '#'">your order</button>
+                            <button onclick="window.location = 'checkout_data.php'">your order</button>
                             <div class="footer">
                                 <p>© 2025</p>
                                 <p>All rights reserved.</p>

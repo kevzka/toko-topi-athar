@@ -423,6 +423,7 @@ include '../db.php';
 </head>
 
 <body>
+    <?php include 'sidebar.php' ?>
     <div class="container">
         <div class="line2">E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design </div>
         <div class="cart-product">

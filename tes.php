@@ -1,152 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fake reCAPTCHA</title>
-  <style>
-    .fake-recaptcha {
-  display: inline-flex;
-  flex-direction: column;
-  border: 1px solid #d3d3d3;
-  border-radius: 4px;
-  padding: 10px;
-  width: 300px;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  user-select: none;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar Trigger Bubble</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS untuk Bubble */
+        .sidebar-trigger {
+            position: fixed; /* Tetap di tempat saat di-scroll */
+            top: 20px; /* Jarak dari atas */
+            left: 20px; /* Jarak dari kiri */
+            width: 50px;
+            height: 50px;
+            background-color: #3498db; /* Warna latar belakang bubble */
+            color: white; /* Warna ikon */
+            border-radius: 50%; /* Membuat bentuk lingkaran */
+            display: flex;
+            justify-content: center; /* Membuat ikon berada di tengah horizontal */
+            align-items: center; /* Membuat ikon berada di tengah vertikal */
+            cursor: pointer; /* Mengubah kursor menjadi pointer saat dihover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+            z-index: 1000; /* Memastikan bubble berada di atas elemen lain */
+        }
 
-.fake-recaptcha > .recaptcha-main {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
+        /* CSS untuk Sidebar (contoh) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Sembunyikan sidebar di luar layar */
+            width: 250px;
+            height: 100%;
+            background-color: #f0f0f0;
+            transition: left 0.3s ease; /* Efek transisi saat sidebar muncul/hilang */
+            z-index: 999;
+            padding-top: 60px; /* Ruang untuk bubble trigger */
+        }
 
-.fake-recaptcha > .recaptcha-main > .checkbox-box {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #999;
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background-color: white;
-  position: relative;
-}
+        .sidebar.active {
+            left: 0; /* Memunculkan sidebar */
+        }
 
-.fake-recaptcha > .recaptcha-main > .checkbox-box > .checkmark {
-  display: none;
-  color: green;
-  font-size: 16px;
-  font-weight: bold;
-}
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.fake-recaptcha > .recaptcha-main > .checkbox-box > .loading-spinner {
-  display: none;
-  width: 14px;
-  height: 14px;
-  border: 2px solid #ccc;
-  border-top: 2px solid #888;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-.fake-recaptcha.loading > .recaptcha-main > .checkbox-box > .loading-spinner {
-  display: inline-block;
-}
-
-.fake-recaptcha.done > .recaptcha-main > .checkbox-box > .checkmark {
-  display: inline;
-}
-
-.fake-recaptcha > .recaptcha-main > .captcha-text {
-  font-size: 14px;
-}
-
-.fake-recaptcha > .recaptcha-main > .recaptcha-logo {
-  margin-left: auto;
-}
-
-.fake-recaptcha > .recaptcha-main > .recaptcha-logo > img {
-  width: 48px;
-  height: auto;
-}
-
-.fake-recaptcha > .recaptcha-footer {
-  margin-top: 5px;
-  width: 100%;
-  text-align: right;
-  font-size: 9px;
-  color: #555;
-  line-height: 1.2;
-}
-
-.fake-recaptcha > .recaptcha-footer > .recaptcha-brand {
-  font-size: 9px;
-  color: #555;
-}
-
-.fake-recaptcha > .recaptcha-footer > a {
-  color: #555;
-  text-decoration: none;
-  margin-left: 4px;
-}
-
-.fake-recaptcha > .recaptcha-footer > a:hover {
-  text-decoration: underline;
-}
-
-/* Animation Keyframe */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-  </style>
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
 
-<div class="fake-recaptcha" id="recaptcha">
-  <div class="recaptcha-main">
-    <div class="checkbox-box" id="checkbox">
-      <span class="checkmark">✔</span>
-      <div class="loading-spinner" id="spinner"></div>
+
+    <div class="sidebar">
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
     </div>
-    <div class="captcha-text" id="captchaText">I'm not a robot</div>
-    <div class="recaptcha-logo">
-      <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA">
-    </div>
-  </div>
-  <div class="recaptcha-footer">
-    <div class="recaptcha-brand">reCAPTCHA</div>
-  </div>
-</div>
 
-<script>
-  const recaptcha = document.getElementById("recaptcha");
-  const checkbox = document.getElementById("checkbox");
-  const spinner = document.getElementById("spinner");
-  const checkmark = document.querySelector(".checkmark");
-  const captchaText = document.getElementById("captchaText");
+    <script>
+        const trigger = document.querySelector('.sidebar-trigger');
+        const sidebar = document.querySelector('.sidebar');
 
-  checkbox.addEventListener("click", () => {
-    if (recaptcha.classList.contains("done")) return;
-
-    recaptcha.classList.add("loading");
-    captchaText.textContent = "Checking...";
-    spinner.style.display = "inline-block";
-    checkmark.style.display = "none";
-
-    setTimeout(() => {
-      recaptcha.classList.remove("loading");
-      recaptcha.classList.add("done");
-      spinner.style.display = "none";
-      checkmark.style.display = "inline";
-      captchaText.textContent = "You are verified";
-    }, 2000);
-  });
-</script>
+        trigger.addEventListener('click', () => {
+            sidebar.classList.toggle('active'); // Menambah/menghapus class 'active' untuk menampilkan/menyembunyikan sidebar
+        });
+    </script>
 
 </body>
 </html>

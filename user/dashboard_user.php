@@ -26,9 +26,9 @@ include 'session.php';
             <div class="bar">
                 <img src="../gambar/logo.png" alt="">
                 <div class="icons">
-                    <div class="fa-solid fa-heart"></div>
+                    <div class="fa-solid fa-clipboard-list" onclick="window.location = 'checkout_data.php'"></div>
                     <div class="fa-solid fa-cart-shopping icon" onclick="window.location = 'cart.php'"></div>
-                    <div class="fa-solid fa-user icon"></div>
+                    <div class="fa-solid fa-user icon" onclick="window.location = 'profile_user.php'"></div>
                     <div class="fa fa-right-from-bracket fa-lg pad" onclick="window.location = '../logout.php'"></div>
                 </div>
                 <div class="line"></div>

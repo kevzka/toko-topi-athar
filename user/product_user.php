@@ -93,6 +93,8 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
+    <?php include 'sidebar.php' ?>
+
     <div class="container">
         <div class="product-display">
                 <?php

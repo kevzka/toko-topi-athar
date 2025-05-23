@@ -1,0 +1,81 @@
+/* CSS untuk Bubble */
+        .sidebar-trigger {
+            position: fixed; /* Tetap di tempat saat di-scroll */
+            top: 20px; /* Jarak dari atas */
+            left: 20px; /* Jarak dari kiri */
+            width: 50px;
+            height: 50px;
+            background-color: #3498db; /* Warna latar belakang bubble */
+            color: white; /* Warna ikon */
+            border-radius: 50%; /* Membuat bentuk lingkaran */
+            display: flex;
+            justify-content: center; /* Membuat ikon berada di tengah horizontal */
+            align-items: center; /* Membuat ikon berada di tengah vertikal */
+            cursor: pointer; /* Mengubah kursor menjadi pointer saat dihover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+            z-index: 9999999; /* Memastikan bubble berada di atas elemen lain */
+        }
+
+        /* CSS untuk Sidebar (contoh) */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Sembunyikan sidebar di luar layar */
+            width: 250px;
+            height: 100%;
+            background-color: #f0f0f0;
+            transition: left 0.3s ease; /* Efek transisi saat sidebar muncul/hilang */
+            z-index: 999;
+            padding-top: 100px; /* Ruang untuk bubble trigger */
+        }
+
+        /* CSS untuk Sidebar */
+        .sidebar.open {
+            left: 0;
+            width: 250px; /* Lebar sidebar */
+            height: 100vh; /* Tinggi penuh viewport */
+            background-color: #f0f0f0;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 999999;
+        }
+
+        .sidebar ul {
+            list-style-type: none; /* Hilangkan bullet point default */
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 10px 20px; /* Padding untuk setiap item */
+            border-bottom: 1px solid #e0e0e0; /* Garis pemisah antar item */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Efek hover */
+
+            /* Menggunakan Flexbox untuk menata ikon dan teks */
+            display: flex;
+            align-items: center; /* Pusatkan secara vertikal */
+            gap: 10px; /* Jarak antara ikon dan teks */
+        }
+
+        .sidebar ul li:last-child {
+            border-bottom: none; /* Hilangkan garis bawah untuk item terakhir */
+        }
+
+        .sidebar ul li:hover {
+            background-color: #e9e9e9; /* Warna latar belakang saat dihover */
+        }
+
+        .sidebar ul li i {
+            /* Gaya untuk ikon */
+            color: #333; /* Warna ikon */
+            font-size: 1.2em; /* Ukuran ikon */
+            width: 20px; /* Berikan lebar tetap agar ikon sejajar */
+            text-align: center; /* Pastikan ikon di tengah jika width lebih besar dari ikon */
+        }
+
+        .sidebar ul li span {
+            /* Gaya untuk teks */
+            font-size: 1.1em;
+            color: #333;
+            text-transform: capitalize; /* Opsional: Huruf kapital di awal kata */
+        }

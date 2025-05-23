@@ -21,7 +21,6 @@ include 'session.php';
         .container > .header{
             width: 100%;
             height: 40%;
-            background-color: green;
         }
         .container > .contain{
             width: 100%;
@@ -37,9 +36,6 @@ include 'session.php';
             /* background-color: red; */
         }
         .container > .header{
-            background-image: url("../gambar/header.jpg");
-            background-size: 80%;
-            background-position: 50% -100px;
         }
         .container > .header .bar > .line{
             position: absolute;
@@ -220,19 +216,48 @@ include 'session.php';
 }
 
 .slider-track {
+    height: 100%;
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
 
 .slide {
     min-width: 100%;
+    height: 100%;
     flex-shrink: 0;
 }
 
+.slider-track > .slide:nth-child(1){
+    background-image: url('../gambar/bg-slider1.jpg');
+    background-size: 100%;
+    background-position: 0 -80rem;
+    background-repeat: no-repeat;
+}
+.slider-track > .slide:nth-child(2){
+    background-image: url('../gambar/bg-slider2.jpg');
+    background-size: 100%;
+    background-position: 0 -20rem;
+    background-repeat: no-repeat;
+}
+.slider-track > .slide:nth-child(3){
+    position: relative;
+    background-image: url('../gambar/bg-slider3.jpg');
+    background-size: 100%;
+    background-position: 0 -20rem;
+    background-repeat: no-repeat;
+}
+.slider-track > .slide:nth-child(4){
+    position: relative;
+    background-image: url('../gambar/bg-slider4.jpg');
+    background-size: 100%;
+    background-position: 0 -12rem;
+    background-repeat: no-repeat;
+}
+
 .slide img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
+    display: block;
+    height: 100%;
+    margin: auto;
 }
 
 .dots {
@@ -284,10 +309,10 @@ include 'session.php';
         <div class="header">
             <div class="slider-container">
             <div class="slider-track" id="sliderTrack">
-                <div class="slide"><img src="../gambar/slider1.jpg" alt=""></div>
-                <div class="slide"><img src="https://picsum.photos/id/1016/600/250" alt=""></div>
-                <div class="slide"><img src="https://picsum.photos/id/1018/600/250" alt=""></div>
-                <div class="slide"><img src="https://picsum.photos/id/1019/600/250" alt=""></div>
+                <div class="slide" style="background-color: red;"><img src="../gambar/sliderppl1.png" alt=""></div>
+                <div class="slide" style="background-color: blue;"><img src="../gambar/sliderppl2.png" alt="" style="scale: 1.2;"></div>
+                <div class="slide" style="background-color: green;"><img src="../gambar/sliderppl4.png" alt="" style="scale: 2; left: 0; top: -50px; position: absolute; right: 0;"></div>
+                <div class="slide" style="background-color: green;"></div>
             </div>
             <div class="dots" id="dots"></div>
         </div>

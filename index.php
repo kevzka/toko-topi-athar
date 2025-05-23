@@ -116,13 +116,22 @@
       box-sizing: border-box;
     }
 
-    .section .box:nth-of-type(2){
+    .section-section .section:nth-child(1) .box:nth-of-type(2){
       top: 40px;
       left: 40px;
     }
 
-    .section .box:nth-of-type(3){
+    .section-section .section:nth-child(1) .box:nth-of-type(3){
       bottom: 40px;
+      right: 40px;
+    }
+    .section-section .section:nth-child(2) .box:nth-of-type(2){
+      bottom: 40px;
+      left: 40px;
+    }
+
+    .section-section .section:nth-child(2) .box:nth-of-type(3){
+      top: 40px;
       right: 40px;
     }
 
@@ -131,22 +140,28 @@
       height: 80%;
     }
 
-    .section:nth-child(3) .box:nth-of-type(2) .image{
+    .section .box {
+      background-color: white;
+      position: absolute;
+      z-index: 5;
+    }
+
+    .section:nth-child(1) .box:nth-of-type(2) .image{
       background-image: url("gambar/winter.jpg");
       background-size: cover;
     }
 
-    .section:nth-child(3) .box:nth-of-type(3) .image{
+    .section:nth-child(1) .box:nth-of-type(3) .image{
       background-image: url("gambar/spring.jpg");
       background-size: cover;
     }
     
-    .section:nth-child(4) .box:nth-of-type(2) .image{
-      background-image: url("gambar/summer.jpg");
+    .section:nth-child(2) .box:nth-of-type(2) .image{
+      background-image: url("gambar/summer\ \(2\).jpg");
       background-size: cover;
     }
 
-    .section:nth-child(4) .box:nth-of-type(3) .image{
+    .section:nth-child(2) .box:nth-of-type(3) .image{
       background-image: url("gambar/fall.jpg");
       background-size: cover;
     }
@@ -183,6 +198,67 @@
       background-color: black;
       z-index: 9999999;
     }
+    .section-section{
+      position: relative;
+    }
+    .acces{
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .acces > img{
+      position: absolute;
+      width: 150px;
+    }
+    .acces > img:nth-child(1){
+      scale: 1.2;
+      left: 150px;
+      top: 510px;
+    }
+    .acces > img:nth-child(2){
+      scale: 1.2;
+      left: 150px;
+      top: 730px;
+    }
+    .acces > img:nth-child(3){
+      scale: 1.2;
+      right: 150px;
+      bottom: 545px;
+    }
+    .section-section .section > img{
+      z-index: 6;
+      position: absolute;
+      width: 250px;
+    }
+    .section-section .section:nth-child(1) > img:nth-child(2){
+      top: 60px;
+      right: 300px;
+      transform: rotate(93.6deg);
+    }
+    .section-section .section:nth-child(1) > img:nth-child(3){
+      top: -60px;
+      left: -70px;
+      rotate: 70deg;
+    }
+    .section-section .section:nth-child(2) > img:nth-child(2){
+      top: 50px;
+      left: -70px;
+      rotate: -35.5deg;
+    }
+    .section-section .section:nth-child(2) > img:nth-child(3){
+      top: -25px;
+      right: 300px;
+      scale: 1.2;
+      rotate: 18.6deg;
+    }
+    /* .section-section .section:nth-child(1) img:nth-child(3){
+      top: -60px;
+      left: -70px;
+      rotate: 70deg;
+    } */
+
     </style>
     <style>
       @keyframes blink {
@@ -215,30 +291,42 @@
         click anywhere to start
       </div>
     </div>
-    <div class="section">
-      <div class="chain1">
-        <img src="gambar/rantai1.png" alt="" >
+    <div class="section-section">
+
+      <div class="section">
+        <div class="chain1">
+          <img src="gambar/rantai1.png" alt="" >
+        </div>
+        <img src="gambar/star1.png" alt="">
+        <img src="gambar/star2.png" alt="">
+        <div class="box" data-aos="fade-up" data-aos-duration="1500">
+          <div class="image"></div>
+          <div class="teks-I">WINTER 2025</div>
+        </div>
+        <div class="box" data-aos="fade-up" data-aos-duration="1500">
+          <div class="image"></div>
+          <div class="teks-I">SPRING 2025</div>
+        </div>
       </div>
-      <div class="box" data-aos="fade-up" data-aos-duration="1500">
-        <div class="image"></div>
-        <div class="teks-I">WINTER 2025</div>
+      <div class="section">
+        <div class="chain2">
+          <img src="gambar/rantai2.png" alt="" >
+        </div>
+        <img src="gambar/pita1.png" alt="">
+        <img src="gambar/cross2.png" alt="" >
+        <div class="box" data-aos="fade-up" data-aos-duration="1500">
+          <div class="image"></div>
+          <div class="teks-I">SUMMER 2025</div>
+        </div>
+        <div class="box" data-aos="fade-up" data-aos-duration="1500">
+          <div class="image"></div>
+          <div class="teks-I">FALL 2025</div>
+        </div>
       </div>
-      <div class="box" data-aos="fade-up" data-aos-duration="1500">
-        <div class="image"></div>
-        <div class="teks-I">SPRING 2025</div>
-      </div>
-    </div>
-    <div class="section">
-      <div class="chain2">
-        <img src="gambar/rantai2.png" alt="" >
-      </div>
-      <div class="box" data-aos="fade-up" data-aos-duration="1500">
-        <div class="image"></div>
-        <div class="teks-I">SUMMER 2025</div>
-      </div>
-      <div class="box" data-aos="fade-up" data-aos-duration="1500">
-        <div class="image"></div>
-        <div class="teks-I">FALL 2025</div>
+      <div class="acces" data-aos="fade-up" data-aos-duration="1500">
+          <img src="gambar/rantai4.png" alt=""> 
+          <img src="gambar/rantai4.png" alt="">
+          <img src="gambar/rantai4.png" alt="">
       </div>
     </div>
   </div>

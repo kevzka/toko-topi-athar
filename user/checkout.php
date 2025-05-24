@@ -191,8 +191,6 @@ include '../db.php';
             object-fit: cover;
         }
 
-        .product-details {}
-
         .product-title {
             text-transform: uppercase;
             margin-top: 2rem;

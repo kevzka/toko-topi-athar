@@ -72,10 +72,6 @@ include 'session.php'; // Make sure this path is correct
         .section form table tr:last-child td {
             border-bottom: none;
         }
-        /* Adjust last column of the last row for the button if needed */
-        .section form table tr:last-child td:last-child {
-             /* Remove right border if it's a colspan button cell */
-        }
 
         .section form table input[type="text"],
         .section form table input[type="email"],

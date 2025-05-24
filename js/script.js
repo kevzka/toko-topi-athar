@@ -22,6 +22,7 @@ function sliderBanner(){
   }
 
   function nextSlide() {
+    console.log('next');
     currentIndex = (currentIndex + 1) % slides.length;
     updateSlider();
   }
@@ -76,8 +77,8 @@ document.addEventListener('mousemove', e => {
 document.addEventListener('mouseup', () => {
   if (isDragging) {
     isDragging = false;
-    startAutoSlide();
   }
+  startAutoSlide();
 });
 
 // === Fungsi Geser Bersama ===

@@ -47,7 +47,7 @@ include '../db.php';
                             if ($produk->num_rows == 0) {
                             ?>
                                 <tr>
-                                    <td colspan="8" style="padding: 5px;"><b>Tidak ada data</b></td>
+                                    <td colspan="3" style="padding: 5px; text-align:center; height: 270px; line-height: 270px; text-transform: uppercase;"><b>NO ORDERS YET</b></td>
                                 </tr>
                                 <?php
                             }
@@ -115,7 +115,7 @@ include '../db.php';
             <img src="../gambar/rantai4.png" alt="">
             <img src="../gambar/rantai4.png" alt="">
             <img src="../gambar/rantai4.png" alt="">
-            <img src="../gambar/logo.png" alt="">
+            <img src="../gambar/logo.png" onclick="window.location = '../index.php'" alt="">
             <img src="../gambar/planet1.png" alt="">
         </div>
     </div>

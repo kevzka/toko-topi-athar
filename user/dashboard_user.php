@@ -24,8 +24,7 @@ include 'session.php';
             <div class="dots" id="dots"></div>
         </div>
             <div class="bar">
-                <img src="../gambar/logo.png" alt="">
-            <img src="../gambar/planet1.png" alt="">
+                <img src="../gambar/logo.png" onclick="window.location = '../index.php'" alt="">
                 <div class="icons">
                     <div class="fa-solid fa-clipboard-list" onclick="window.location = 'checkout_data.php'"></div>
                     <div class="fa-solid fa-cart-shopping icon" onclick="window.location = 'cart.php'"></div>

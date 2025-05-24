@@ -22,7 +22,7 @@ include '../db.php';
                     <div class="pembayaran">
                         <div class="card">
                             <div class="logo-contain">
-                                <img src="../gambar/logo.png" class="logo" alt="Logo">
+                                <img src="../gambar/logo.png" onclick="window.location = '../index.php'" class="logo" alt="Logo">
                                 <div class="line-logo"></div>
                             </div>
         
@@ -55,489 +55,7 @@ include '../db.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            text-transform: lowercase;
-        }
-
-        .container {
-            padding-bottom: 54.5px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            padding-left: 50px;
-            width: 100%;
-            box-sizing: border-box;
-            height: 100vh;
-        }
-
-        .cart-product {
-            flex: 1;
-            /* Isi ruang tersisa */
-            height: 100%;
-            box-sizing: border-box;
-            background-color: white;
-            padding: 0 10px;
-        }
-
-        .pembayaran {
-            display: flex;
-            align-items: center;
-            width: 29%;
-            height: 100%;
-            box-sizing: border-box;
-            background-color: white;
-            padding: 0 20px;
-        }
-
-        .card {
-            z-index: 2;
-            height: 80%;
-            text-transform: lowercase;
-            width: 100%;
-            margin: 50px auto;
-            background: #f0f1f5;
-            border-radius: 30px;
-            padding: 10px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-        }
-
-        .logo {
-            display: block;
-            margin: 0 auto;
-            width: 60%;
-        }
-
-        .line {
-            border-bottom: 2px solid black;
-            margin: 15px 0;
-        }
-
-        .pembayaran>.card>.logo-contain {
-            width: 100%;
-            height: max-content;
-            margin-bottom: 2rem;
-        }
-
-        .pembayaran>.card>.logo-contain>.line-logo {
-            margin: auto;
-            width: 60%;
-            border-bottom: 2px solid black;
-        }
-
-        .cart-title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 10%;
-            width: 100%;
-            font-size: 1rem;
-            font-weight: bold;
-            box-sizing: border-box;
-        }
-
-        .cart-title>p {
-            display: inline-block;
-            /* Supaya bisa pakai border */
-            border-bottom: 2px solid black;
-            /* Garis bawah */
-            padding-bottom: 4px;
-        }
-
-        .cart-table-wrapper {
-            width: 100%;
-            height: 60%;
-            border-bottom: 2px solid #d9d9d8;
-            box-sizing: border-box;
-            /* flex: 1; */
-            overflow-y: auto;
-            padding: 10px;
-        }
-
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .cart-table th,
-        .cart-table td {
-            padding: 10px;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        .cart-table td:nth-child(2) {
-            padding: 10px;
-            text-align: center;
-            line-height: 80px;
-        }
-
-        .cart-table tbody {
-            border-top: 2px solid #d9d9d8;
-        }
-
-        .product-info {
-            display: flex;
-            gap: 10px;
-        }
-
-        .product-image {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-        }
-
-        .product-title {
-            text-transform: uppercase;
-            margin-top: 2rem;
-            font-weight: bold;
-        }
-
-        .product-description {
-            font-size: 12px;
-            color: #555;
-        }
-
-        .quantity-control {
-            width: max-content;
-            margin: auto;
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 5px;
-        }
-
-        .remove-link {
-            width: 100%;
-            display: inline-block;
-            font-weight: bold;
-            text-align: center;
-            font-size: 12px;
-            text-decoration: underline;
-            text-decoration-thickness: 2px;
-            /* atur ketebalan underline */
-            color: black;
-        }
-
-        .cart-progress {
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            font-weight: bold;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .stepper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: sans-serif;
-        }
-
-        .step {
-            width: 40px;
-            text-align: center;
-
-        }
-
-        .circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #ddd;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            font-weight: bold;
-        }
-
-        .step.active .circle {
-            background: #000;
-            color: #fff;
-        }
-
-        .label {
-            margin-top: 8px;
-            font-weight: bold;
-            color: #000;
-            font-size: 14px;
-            white-space: nowrap;
-        }
-
-        .stepper .line {
-            flex: 1;
-            height: 2px;
-            background: #ddd;
-            margin: 0 10px;
-        }
-
-        .accesoris {
-            position: absolute;
-        }
-
-        .accesoris img {
-            position: absolute;
-            z-index: 999;
-            width: 150px;
-            top: 0;
-            left: -90px;
-        }
-
-        .accesoris img:nth-child(2) {
-            top: calc(187px*1);
-        }
-
-        .accesoris img:nth-child(3) {
-            top: calc(187px*2);
-        }
-
-        .accesoris img:nth-child(4) {
-            top: calc(187px*3);
-        }
-
-        .accesoris img:nth-child(5) {
-            width: 450px;
-            transform: scaleY(-1);
-            rotate: -10deg;
-            left: calc(100vw - 248px);
-            top: calc(-150px);
-        }
-
-        .delivery-section>p,
-        .payment-section>p {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 0;
-        }
-
-        .card input {
-            margin: 5px 0;
-            width: 80%;
-            padding: 10px 20px;
-            height: 10px;
-            border: none;
-            border-radius: 20px;
-            /* Setengah lingkaran horizontal */
-            background-color: #dadff0;
-            /* Biru muda */
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .card input::placeholder {
-            opacity: 0.5;
-            font-weight: bold;
-            color: #020202;
-        }
-
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .payment-methods .peyment-items {
-            width: 50px;
-            height: 30px;
-            background-color: red;
-        }
-
-        .confirm-button {
-            text-transform: lowercase;
-            font-weight: bold;
-            width: 100%;
-            padding: 12px;
-            background: black;
-            color: white;
-            border: none;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 30px;
-        }
-
-        .container>.line2 {
-            font-family: 'Arial Black', sans-serif;
-            line-height: 54.2PX;
-            overflow: hidden;
-            position: absolute;
-            width: max-content;
-            height: 54.2px;
-            background-color: black;
-            bottom: 0;
-            left: -5px;
-            text-transform: uppercase;
-            box-sizing: border-box;
-            color: white;
-            z-index: 999999;
-        }
-
-        .upload-label {
-            width: 100%;
-            box-sizing: border-box;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            gap: 8px;
-            background-color: black;
-            color: white;
-            padding: 10px 16px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .upload-label:hover {
-            background-color: black;
-        }
-
-        .upload-label.uploaded {
-            background-color: white;
-            color: black;
-            border: 2px solid black;
-            box-sizing: border-box;
-        }
-
-        .confirmation {
-            top: 0;
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            z-index: 10;
-        }
-
-        .confirmation>.pembayaran {
-            display: flex;
-            align-items: center;
-            width: 29%;
-            height: 100%;
-            box-sizing: border-box;
-            background-color: white;
-            padding: 0 20px;
-            padding-bottom: 54.5px;
-        }
-
-        .confirmation>.pembayaran .card {
-            position: relative;
-            z-index: 2;
-            height: 80%;
-            text-transform: lowercase;
-            width: 100%;
-            margin: 50px auto;
-            background: #f0f1f5;
-            border-radius: 30px;
-            padding: 10px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-        }
-
-        .confirmation>.pembayaran .card .logo-contain {
-            width: 100%;
-            height: max-content;
-            margin-bottom: 1rem;
-        }
-
-        .confirmation>.pembayaran .card .logo-contain .logo {
-            display: block;
-            margin: 0 auto;
-            width: 60%;
-        }
-
-        .confirmation>.pembayaran .card .logo-contain .line-logo {
-            margin: auto;
-            width: 60%;
-            border-bottom: 2px solid black;
-        }
-
-        .confirmation>.pembayaran .card .continue-text {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .confirmation>.pembayaran {
-            position: absolute;
-            right: 0;
-        }
-
-        .confirmation>.pembayaran .card .container-text {
-            margin: auto;
-            text-align: center;
-            width: 70%;
-            color: #020202;
-        }
-
-        .confirmation>.pembayaran .card .container-text a {
-            margin: auto;
-            text-align: center;
-            width: 70%;
-            color: #020202;
-        }
-
-        .confirmation>.pembayaran .card button {
-            display: block;
-            margin: 0px auto;
-            text-align: center;
-            width: 90%;
-            text-transform: lowercase;
-            font-weight: bold;
-            padding: 12px;
-            background: black;
-            color: white;
-            border: none;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 30px;
-        }
-
-        .confirmation>.pembayaran .card .footer {
-            right: 0;
-            left: 0;
-            position: absolute;
-            bottom: 0;
-            margin-bottom: 20px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 12px;
-            color: black;
-        }
-
-        .confirmation>.pembayaran .card .footer>p {
-            margin: 0;
-        }
-
-        .confirmation .bg-white {
-            position: absolute;
-            width: 100%;
-            height: 100vh;
-            top: 0;
-            background-color: white;
-            opacity: 0.5;
-        }
-
-        .jumlah {
-            font-family: arial;
-            font-size: 1.5rem;
-            font-weight: bold;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            display: flex;
-            right: 0;
-            height: 25%;
-        }
-    </style>
+    <link rel="stylesheet" href="../style/checkout.css">
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'>
 </head>
 
@@ -607,22 +125,22 @@ include '../db.php';
         <div class="pembayaran">
             <div class="card">
                 <div class="logo-contain">
-                    <img src="../gambar/logo.png" class="logo" alt="Logo">
+                    <img src="../gambar/logo.png" onclick="window.location = '../index.php'" class="logo" alt="Logo">
                     <div class="line-logo"></div>
                 </div>
 
 
+                <form action="" method="post" enctype="multipart/form-data">
                 <!-- Bagian Delivery -->
                 <div class="delivery-section">
                     <p style="margin-top: 5px;">Delivery</p>
-                    <input type="text" placeholder="Country/Region">
-                    <input type="text" placeholder="Address">
-                    <input type="text" placeholder="City">
-                    <input type="text" placeholder="Province">
+                    <input type="text" placeholder="Country/Region" name="fake[]">
+                    <input type="text" placeholder="Address" name="fake[]">
+                    <input type="text" placeholder="City" name="fake[]">
+                    <input type="text" placeholder="Province" name="fake[]">
                 </div>
 
                 <!-- Bagian Payment -->
-                <form action="" method="post" enctype="multipart/form-data">
                     <div class="payment-section">
 
                         <p style="margin: 5px 0;">Payment</p>
@@ -650,38 +168,51 @@ include '../db.php';
         </div>
     </div>
     <?php
-    if (isset($_POST['proses'])) {
-        $tgl = date('Y-m-d');
-        $filename = $_FILES['gambar']['name'];
-        $tmp_name = $_FILES['gambar']['tmp_name'];
+    $fakeTrue = true;
+    foreach($_POST['fake'] as $i){
+        if(strlen($i) == 0){
+            $fakeTrue = false;
+        }
+    }
+    if($fakeTrue == false){
+        echo "<script>
+            alert('masukan lokasi pengiriman');
+        </script>";
+    } else {
 
-        $type1 = explode('.', $filename);
-        $type2 = $type1[1];
-
-        $newname = 'tf' . time() . '.' . $type2;
-
-        $tipe_diizinkan = array('jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG', 'GIF', 'WEBP', 'webp');
-
-        if (!in_array($type2, $tipe_diizinkan)) {
-            echo '<script>alert("format file tidak diizinkan");window.location = "checkout.php"</script>';
-        } else {
-            move_uploaded_file($tmp_name, '../bukti_transfer/' . $newname);
-            $query = mysqli_query($conn, "SELECT * FROM t_checkout_temp NATURAL JOIN t_product");
-            while ($r = mysqli_fetch_array($query)) {
-                $jml = $r['jml'];
-                $product_price = $r["product_price"];
-                $total = $jml * $product_price;
-                $insert = mysqli_query($conn, "INSERT INTO t_checkout VALUES (null, '$r[id_product]', '$jml', '$r[id_admin]', '$total', '$newname', 'Menunggu', 'Pending', '$tgl')");
-                mysqli_query($conn, "UPDATE t_product SET product_stock=stock-'$jml' WHERE id_product='$r[id_product]'");
-            }
-            mysqli_query($conn, "TRUNCATE t_checkout_temp");
-            if ($insert) {
-                echo '<script>
-                                        alert("Pembayaran Berhasil");
-                                        addConfirmation();
-                                    </script>';
+        if (isset($_POST['proses'])) {
+            $tgl = date('Y-m-d');
+            $filename = $_FILES['gambar']['name'];
+            $tmp_name = $_FILES['gambar']['tmp_name'];
+    
+            $type1 = explode('.', $filename);
+            $type2 = $type1[1];
+    
+            $newname = 'tf' . time() . '.' . $type2;
+    
+            $tipe_diizinkan = array('jpg', 'jpeg', 'png', 'gif', 'JPG', 'JPEG', 'PNG', 'GIF', 'WEBP', 'webp');
+    
+            if (!in_array($type2, $tipe_diizinkan)) {
+                echo '<script>alert("format file tidak diizinkan");window.location = "checkout.php"</script>';
             } else {
-                echo 'gagal' . mysqli_error($conn);
+                move_uploaded_file($tmp_name, '../bukti_transfer/' . $newname);
+                $query = mysqli_query($conn, "SELECT * FROM t_checkout_temp NATURAL JOIN t_product");
+                while ($r = mysqli_fetch_array($query)) {
+                    $jml = $r['jml'];
+                    $product_price = $r["product_price"];
+                    $total = $jml * $product_price;
+                    $insert = mysqli_query($conn, "INSERT INTO t_checkout VALUES (null, '$r[id_product]', '$jml', '$r[id_admin]', '$total', '$newname', 'Menunggu', 'Pending', '$tgl')");
+                    mysqli_query($conn, "UPDATE t_product SET product_stock=stock-'$jml' WHERE id_product='$r[id_product]'");
+                }
+                mysqli_query($conn, "TRUNCATE t_checkout_temp");
+                if ($insert) {
+                    echo '<script>
+                                            alert("Pembayaran Berhasil");
+                                            addConfirmation();
+                                        </script>';
+                } else {
+                    echo 'gagal' . mysqli_error($conn);
+                }
             }
         }
     }

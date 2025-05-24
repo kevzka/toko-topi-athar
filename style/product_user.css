@@ -1,0 +1,70 @@
+/* Untuk WebKit-based browsers (Chrome, Safari, Edge baru) */
+::-webkit-scrollbar {
+	display: none; /* Menyembunyikan scrollbar sepenuhnya */
+	width: 0; /* Atau set lebarnya menjadi 0 */
+}
+body {
+	margin: 0;
+}
+.container {
+	width: 100%;
+}
+.container > .product-display {
+	position: relative;
+	z-index: 2;
+	box-sizing: border-box;
+	padding: 0 50px;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-auto-rows: 315px;
+	width: 100%;
+	height: 100%;
+}
+.product-display > a {
+	all: unset;
+	cursor: pointer;
+	z-index: 3;
+}
+.item {
+	background-color: white;
+	height: 100%;
+	padding: 20px;
+	/* border: 1px solid red; */
+	box-sizing: border-box;
+}
+.item > p {
+	margin: 0;
+	margin-bottom: 10px;
+	text-transform: uppercase;
+	font-family: "Arial Black", sans-serif;
+	text-align: center;
+}
+.item > .image {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 70%;
+	overflow: hidden;
+	background-color: transparent;
+}
+.item > .image > img {
+	max-width: 180px;
+}
+.accesoris {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+	z-index: 1;
+}
+.accesoris img {
+	position: absolute;
+	width: 150px;
+}
+.item > .image {
+	transition: all 0.2s ease-in;
+}
+.item > .image:hover {
+	transform: translateY(-10px);
+}

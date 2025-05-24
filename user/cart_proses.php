@@ -10,14 +10,14 @@
             echo "
             <script>
                 alert('Stock tidak mencukupi');
-                window.location = 'dashboard_user.php'
+                window.location = 'main_page.php'
             </script>
             ";
         }elseif($stok == '0'){
             echo "
             <script>
                 alert('Stok kosong');
-                window.location = 'dashboard_user.php'
+                window.location = 'main_page.php'
             </script>
             ";
         }else{
@@ -26,7 +26,7 @@
                 echo "
                 <script>
                 alert('Tambah keranjang berhasil');
-                window.location = 'dashboard_user.php'
+                window.location = 'main_page.php'
                 </script>
                 ";
             }else{

@@ -78,7 +78,7 @@ include '../db.php';
 
         .cart-product .cart-table-wrapper {
             width: 100%;
-            height: 60%;
+            height: 350px;
             border-bottom: 2px solid #d9d9d8;
             box-sizing: border-box;
             overflow-y: auto;
@@ -451,7 +451,7 @@ include '../db.php';
                             if ($produk->num_rows == 0) {
                             ?>
                                 <tr>
-                                    <td colspan="8" style="padding: 5px;"><b>Tidak ada data</b></td>
+                                    <td colspan="3" style="padding: 5px; text-align:center; height: 270px; line-height: 270px; text-transform: uppercase;"><b>NO ORDERS YET</b></td>
                                 </tr>
                                 <?php
                             } else {

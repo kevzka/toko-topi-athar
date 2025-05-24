@@ -8,10 +8,10 @@
         <li onclick="window.location='cart.php'">
             <i class="fas fa-shopping-cart"></i> <span>cart</span>
         </li>
-        <li onclick="window.location='profile.php'">
+        <li onclick="window.location='profile_user.php'">
             <i class="fas fa-user-circle"></i> <span>profile</span>
         </li>
-        <li onclick="window.location='dashboard_user.php';localStorage.setItem('sidebar', 'closed');">
+        <li onclick="window.location='main_page.php';localStorage.setItem('sidebar', 'closed');">
             <i class="fas fa-tachometer-alt"></i> <span>dashboard user</span>
         </li>
     </ul>

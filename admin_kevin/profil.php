@@ -18,7 +18,7 @@
             background-color: #fff;
             padding: 25px 30px;
             margin-bottom: 40px;
-            border-left: 5px solid #007bff;
+            border-left: 5px solid black;
             box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
             border-radius: 6px;
             box-sizing: border-box;
@@ -27,7 +27,7 @@
         form h3 {
             font-size: 22px;
             margin-bottom: 20px;
-            color: #007bff;
+            color: black;
             border-bottom: 1px solid #ddd;
             padding-bottom: 5px;
         }
@@ -54,12 +54,12 @@
 
         input[type="text"]:focus,
         input[type="password"]:focus {
-            border-color: #007bff;
+            border-color: black;
             outline: none;
         }
 
         button.btn {
-            background-color: #007bff;
+            background-color: black;
             color: white;
             padding: 10px 20px;
             font-weight: bold;

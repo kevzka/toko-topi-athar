@@ -316,6 +316,9 @@ input[type=number]::-webkit-outer-spin-button {
 
 </head>
 <body>
+  <?php
+    include 'sidebar.php';
+  ?>
 <div class="container-line">
     <div class="line">
           ebsite design E-commers website design E-commers website design 

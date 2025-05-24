@@ -1,5 +1,5 @@
 <?php
-include 'session.php';
+// include 'session.php';
     include '../db.php'
 ?>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ include 'session.php';
                         </div>
                     </form>
                 </div>
-                <div class="view-all" onclick="window.location='product_user.php'" style="cursor: pointer;" >view all</div>
+                <div class="view-all" id="show-products-btn"  style="cursor: pointer;" >view all</div>
                 <div class="line"></div>
             </div>
             <div class="product-display">

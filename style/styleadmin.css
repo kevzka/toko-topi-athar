@@ -379,6 +379,7 @@ h1 {
 } */
 
 .btn {
+	margin: 20px;
   padding: 8px 14px;
   margin-right: 6px;
   border: none;
@@ -386,28 +387,40 @@ h1 {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  font-weight: bold;
   transition: all 0.3s ease;
+  color: white;
+  background-color: black;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   letter-spacing: 0.5px;
+  box-sizing: border-box;
+  
+	border: 2px solid black;
 }
 
 .btn.edit {
-  background: linear-gradient(135deg, #4e9af1, #3788e0);
+  background-color: black;
   color: #fff;
 }
 
 .btn.edit:hover {
-  background: linear-gradient(135deg, #3d7bd1, #2f6ec0);
+	background-color: white;
+	color: black;
+	border: 2px solid black;
+	box-sizing: border-box;
   transform: translateY(-1px);
 }
 
 .btn.hapus {
-  background: linear-gradient(135deg, #f15454, #e04040);
-  color: #fff;
+  /* background: linear-gradient(135deg, #f15454, #e04040);
+   */
+   background-color: white;
+  color: black;
 }
 
 .btn.hapus:hover {
-  background: linear-gradient(135deg, #d43b3b, #c93333);
+	background-color: black;
+	color: white;
   transform: translateY(-1px);
 }
 

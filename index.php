@@ -23,7 +23,7 @@
   <div class="line">
       E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design E-commers website design 
   </div>
-  <div class="container"  onclick="window.location = 'user/dashboard_user.php'">
+  <div class="container"  onclick="window.location = 'user/main_page.php'">
     <div class="logo">
       <img src="gambar/logo.png" alt="">
     </div>

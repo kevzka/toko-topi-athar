@@ -1,5 +1,4 @@
 <?php
-    include 'session.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +11,6 @@
         ::-webkit-scrollbar {
             display: none; /* Menyembunyikan scrollbar sepenuhnya */
             width: 0;      /* Atau set lebarnya menjadi 0 */
-        }
-        body{
-            margin: 0;
         }
         .container{
             width: 100%;
@@ -102,34 +98,6 @@
 </head>
 <body>
     <?php include 'sidebar.php' ?>
-
-    <div class="container">
-        <div class="product-display">
-                <?php
-                    $where = "";
-                     $produk = mysqli_query($conn, "SELECT * FROM t_product p JOIN t_category c ON p.id_category = c.id_category WHERE p.product_status = 1 $where");
-                        if (mysqli_num_rows($produk) > 0) {
-                            while ($p = mysqli_fetch_array($produk)) {
-                        ?>
-                            <a href="detail_produk.php?p_id=<?php echo $p['id_product']?>" >
-                                <div class="item" data-aos="fade-up" data-aos-duration="1500">
-                                    <p><?php echo $p['product_name'] ?></p>
-                                    <div class="image"><img src='../produk/<?php echo $p['product_image']?>' alt=""></div>
-                                    <p style="text-transform: capitalize; margin-top: 20px; font-size: 1.2rem;">Rp.<?php echo number_format($p['product_price']) ?></p>
-                                </div>
-                            </a>
-                            <?php
-                            }
-                        }
-                        ?>
-                <div class="accesoris">
-                    <img src="../gambar/rantai4.png" alt="">
-                    <img src="../gambar/rantai4.png" alt="">
-                    <img src="../gambar/rantai4.png" alt="">
-                    <img src="../gambar/rantai4.png" alt="">
-                </div>
-            </div>
-    </div>
     <script>
         AOS.init({
             once: true // 👈 hanya fade sekali

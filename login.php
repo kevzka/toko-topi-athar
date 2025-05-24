@@ -94,7 +94,7 @@ session_start();
                     echo "
                     <script>
                         alert('Login Sukses');
-                        window.location = 'user/dashboard_user.php';
+                        window.location = 'user/main_page.php';
                     </script>
                     ";
                 }else{

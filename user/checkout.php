@@ -3,21 +3,21 @@ include 'session.php';
 include '../db.php';
 ?>
 <script>
-    function addConfirmation(){
+    function addConfirmation() {
 
-            // 1. Get the .container element
-            const containerElement = document.querySelector('.container');
-            const step = document.querySelector('.cart-progress > .stepper > .step:nth-child(6)');
-            step.classList.add('active');
-        
-            // Check if the .container element exists
-            if (containerElement) {
-                // 2. Create a new div element to hold the entire confirmation structure
-                const confirmationDiv = document.createElement('div');
-                confirmationDiv.classList.add('confirmation');
-        
-                // 3. Set the innerHTML of the confirmationDiv to your provided HTML
-                confirmationDiv.innerHTML = `
+        // 1. Get the .container element
+        const containerElement = document.querySelector('.container');
+        const step = document.querySelector('.cart-progress > .stepper > .step:nth-child(6)');
+        step.classList.add('active');
+
+        // Check if the .container element exists
+        if (containerElement) {
+            // 2. Create a new div element to hold the entire confirmation structure
+            const confirmationDiv = document.createElement('div');
+            confirmationDiv.classList.add('confirmation');
+
+            // 3. Set the innerHTML of the confirmationDiv to your provided HTML
+            confirmationDiv.innerHTML = `
                     <div class="bg-white"></div>
                     <div class="pembayaran">
                         <div class="card">
@@ -40,13 +40,13 @@ include '../db.php';
                         </div>
                         </form> </div>
                 `;
-        
-                // 4. Insert the new confirmationDiv immediately after the .container element
-                containerElement.insertAdjacentElement('afterend', confirmationDiv);
-            } else {
-                console.warn('Element with class ".container" not found.');
-            }
+
+            // 4. Insert the new confirmationDiv immediately after the .container element
+            containerElement.insertAdjacentElement('afterend', confirmationDiv);
+        } else {
+            console.warn('Element with class ".container" not found.');
         }
+    }
 </script>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,14 +185,17 @@ include '../db.php';
         }
 
         .product-image {
-            width: 80px;
-            height: 80px;
+            position: relative;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
         }
 
         .product-details {}
 
         .product-title {
+            text-transform: uppercase;
+            margin-top: 2rem;
             font-weight: bold;
         }
 
@@ -476,12 +479,14 @@ include '../db.php';
             width: 70%;
             color: #020202;
         }
+
         .confirmation>.pembayaran .card .container-text a {
             margin: auto;
             text-align: center;
             width: 70%;
             color: #020202;
         }
+
         .confirmation>.pembayaran .card button {
             display: block;
             margin: 0px auto;
@@ -497,6 +502,7 @@ include '../db.php';
             cursor: pointer;
             margin-bottom: 30px;
         }
+
         .confirmation>.pembayaran .card .footer {
             right: 0;
             left: 0;
@@ -509,16 +515,29 @@ include '../db.php';
             color: black;
         }
 
-        .confirmation>.pembayaran .card .footer > p {
+        .confirmation>.pembayaran .card .footer>p {
             margin: 0;
         }
-        .confirmation .bg-white{
+
+        .confirmation .bg-white {
             position: absolute;
             width: 100%;
             height: 100vh;
             top: 0;
             background-color: white;
             opacity: 0.5;
+        }
+
+        .jumlah {
+            font-family: arial;
+            font-size: 1.5rem;
+            font-weight: bold;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            display: flex;
+            right: 0;
+            height: 25%;
         }
     </style>
     <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css'>
@@ -545,11 +564,14 @@ include '../db.php';
                         ?>
                             <tr>
                                 <td class="product-info">
-                                    <div class="product-image" style="background-image: url('../produk/<?php echo $row['product_image'] ?>'); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%;"></div>
+                                    <div class="product-image" style="background-image: url('../produk/<?php echo $row['product_image'] ?>'); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%;">
+                                        <div class="jumlah"><?php echo $row['jml'] ?></div>
+                                    </div>
                                     <div class="product-details">
                                         <div class="product-title"><?php echo $row['product_name'] ?></div>
-                                        <div class="product-description">This is a brief description.</div>
-                                        <div style="text-transform: capitalize;">Rp.<?php echo number_format($row['total']) ?></div>
+                                        <div class="product-description" style="text-transform: capitalize;">Color: [black]</div>
+                                        <div class="product-description" style="text-transform: capitalize;">Size: [kids]</div>
+                                        <div style="text-transform: capitalize;" class="product-description">Price: Rp.<?php echo number_format($row['total']) ?></div>
                                     </div>
                                 </td>
                             </tr>
@@ -613,7 +635,7 @@ include '../db.php';
                         </label>
 
                         <p class="or-text" style="margin: 0; font-weight: normal;">or</p>
-                        <p class="cod-text" style="margin: 10px 0 30px 0;">Cash on Delivery</p>
+                        <p class="cod-text" style="margin: 10px 0 30px 0; text-decoration: underline; text-decoration-thickness: 2px;">Cash on Delivery</p>
                     </div>
 
                     <!-- Tombol Confirm -->

@@ -6,102 +6,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        /* Untuk WebKit-based browsers (Chrome, Safari, Edge baru) */
-        ::-webkit-scrollbar {
-            display: none; /* Menyembunyikan scrollbar sepenuhnya */
-            width: 0;      /* Atau set lebarnya menjadi 0 */
-        }
-        .container{
-            width: 100%;
-        }
-        .container > .product-display{
-            position: relative;
-            z-index: 2;
-            box-sizing: border-box;
-            padding: 0 50px;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-auto-rows: 315px;
-            width: 100%;
-            height: 100%;
-        }
-        .product-display > a{
-            all: unset;
-            cursor: pointer;
-            z-index: 3;
-        }
-        .item{
-            background-color: white;
-            height: 100%;
-            padding: 20px;
-            /* border: 1px solid red; */
-            box-sizing: border-box;
-        }
-        .item > p{
-            margin: 0;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-family: 'Arial Black', sans-serif;
-            text-align: center;
-        }
-        .item > .image{
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 70%;
-            overflow: hidden;
-            background-color: transparent;
-        }
-        .item > .image > img{
-            max-width: 180px;
-        }
-        .accesoris{
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow-x: hidden;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-        }
-        .accesoris img{
-            position: absolute;
-            width: 150px;
-        }
-        .accesoris img:nth-child(1){
-            top: 0;
-            left: -37px;
-        }
-        .accesoris img:nth-child(2){
-            top: calc(187px);
-            left: -37px;
-        }
-        .accesoris img:nth-child(3){
-            top: 0;
-            right: -37px;
-        }
-        .accesoris img:nth-child(4){
-            top: calc(187px);
-            right: -37px;
-        }
-        .item > .image{
-    transition: all 0.2s ease-in;
-}
-.item > .image:hover{
-    transform: translateY(-10px);
-}
-    </style>
+    <link rel="stylesheet" href="../style/product_user.css">
      <!-- AOS CSS & JS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
-    <?php include 'sidebar.php' ?>
+    <div class="container">
+        <div class="product-display">
+                <?php
+                    $where = "";
+                     $produk = mysqli_query($conn, "SELECT * FROM t_product p JOIN t_category c ON p.id_category = c.id_category WHERE p.product_status = 1 $where");
+                        if (mysqli_num_rows($produk) > 0) {
+                            while ($p = mysqli_fetch_array($produk)) {
+                        ?>
+                            <a href="detail_produk.php?p_id=<?php echo $p['id_product']?>" >
+                                <div class="item" data-aos="fade-up" data-aos-duration="1500">
+                                    <p><?php echo $p['product_name'] ?></p>
+                                    <div class="image"><img src='../produk/<?php echo $p['product_image']?>' alt=""></div>
+                                    <p style="text-transform: capitalize; margin-top: 20px; font-size: 1.2rem;">Rp.<?php echo number_format($p['product_price']) ?></p>
+                                </div>
+                            </a>
+                            <?php
+                            }
+                        }
+                        ?>
+                <div class="accesoris">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                    <img src="../gambar/rantai4.png" alt="">
+                </div>
+            </div>
+    </div>
     <script>
-        AOS.init({
-            once: true // 👈 hanya fade sekali
-        });
-    </script>
+    AOS.init({ once: true });
+
+    const productItems = document.querySelectorAll('.product-display .item').length;
+    const productDisplay = document.querySelector('.product-display');
+    const kelipatan = Math.ceil(productItems / 10);
+    const height = kelipatan * 100;
+    productDisplay.style.minHeight = height + 'vh';
+
+    const accesories = document.querySelector('.accesoris');
+    accesories.style.height = height + 'vh';
+
+    // 1. Tambahkan 2 gambar terlebih dahulu
+    for (let i = 0; i < 8; i++) {
+        const img = document.createElement('img');
+        img.src = '../gambar/rantai4.png';
+        img.alt = '';
+        accesories.appendChild(img);
+    }
+
+    // 2. Setelah gambar ditambahkan, ambil semua gambar dalam .accesoris
+    const accessoriesImages = document.querySelectorAll('.accesoris img');
+
+    // 3. Atur posisi top dan kanan/kiri berdasarkan urutan
+    accessoriesImages.forEach((img, index) => {
+        const childNumber = index + 1;
+
+        img.style.position = 'absolute';
+
+        // Posisi top dihitung dari urutan
+        if (childNumber % 2 !== 0) {
+            // ganjil → kanan
+            img.style.top = `calc(187px * ${(childNumber - 1) / 2})`;
+            img.style.right = '-37px';
+        } else {
+            // genap → kiri
+            img.style.top = `calc(187px * ${(childNumber - 2) / 2})`;
+            img.style.left = '-37px';
+        }
+    });
+</script>
+
 </body>
 </html>

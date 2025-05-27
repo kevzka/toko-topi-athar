@@ -65,7 +65,8 @@ FROM
 WHERE 
   t_admin.id_admin = t_checkout.id_admin 
   AND t_checkout.id_product = t_product.id_product 
-  AND t_checkout.status = 'selesai';
+  AND t_checkout.status = 'selesai'
+   ORDER BY t_product.product_name DESC
 ");
                             if ($produk->num_rows == 0) {
                             ?>

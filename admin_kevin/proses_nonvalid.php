@@ -1,9 +1,9 @@
 <?php
     include "../db.php";
-    if(isset($_GET['ck_id'])){
-        $delete = mysqli_query($conn, "UPDATE t_checkout SET validasi = 'Tidak Valid', status = 'Batal' WHERE ck_id = '".$_GET['ck_id']."' ");
+    if(isset($_GET['id_ck'])){
+        $delete = mysqli_query($conn, "UPDATE t_checkout SET validation = 'Tidak Valid', status = 'Batal' WHERE id_checkout = '".$_GET['id_ck']."' ");
         echo "<script>
-                window.location = 'checkout.php';
+                // window.location = 'checkout.php';
             </script>";
     }
 ?>

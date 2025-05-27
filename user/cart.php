@@ -38,7 +38,7 @@ include '../db.php';
                             $no = 1;
                             $admin_id = $_SESSION['id_login'];
                             $totalHargaBarang = 0;
-                            $produk = mysqli_query($conn, "SELECT t_cart.id_product, (jml*product_price) AS total, id_cart, category_name, product_name, product_price, product_image, jml FROM t_product, t_category, t_cart WHERE t_category.id_category = t_product.id_category AND t_cart.id_product = t_product.id_product AND id_admin = $admin_id");
+                            $produk = mysqli_query($conn, "SELECT t_cart.id_product, (jml*product_price) AS total, id_cart, category_name, product_name, product_price, product_image, jml, size, color FROM t_product, t_category, t_cart WHERE t_category.id_category = t_product.id_category AND t_cart.id_product = t_product.id_product AND id_admin = $admin_id");
                             if ($produk->num_rows == 0) {
                             ?>
                                 <tr>
@@ -56,13 +56,20 @@ include '../db.php';
                                             <div class="product-image" style="background-image: url('../produk/<?php echo $row['product_image'] ?>'); background-size: contain; background-repeat: no-repeat; background-position: 50% 50%;"></div>
                                             <div class="product-details">
                                                 <div class="product-title"><?php echo $row['product_name'] ?></div>
-                                                <div class="product-description">This is a brief description.</div>
+                                                <div class="product-description" style="text-transform: capitalize;">Color: <?php echo $row['color'] ?></div>
+                                                <div class="product-description" style="text-transform: capitalize;">Size: <?php echo $row['size'] ?></div>
+                                                <input type="hidden" name="size[]" value="<?php echo $row['size'] ?>">
                                             </div>
                                         </td>
-                                        <td style="text-transform: capitalize;">Rp.<?php echo number_format($row['total']) ?></td>
+                                        <td style="text-transform: capitalize;" class="product-price" data-price="<?php echo $row['product_price']; ?>">
+    Rp.<?php echo number_format($row['total']) ?>
+</td>
+
                                         <td>
                                             <div class="quantity-control">
+                                                <button type="button" class="buttonq">-</button>
                                                 <input type="number" value="<?php echo $row['jml'] ?>" min="1" name="jml[]" style="border-right: 2px solid #ccc; border-left: 2px solid #ccc;">
+                                                <button type="button" class="buttonq">+</button>
                                                 </div>
                                             <a href="hapus_proses.php?idc=<?php echo $row['id_cart'] ?>" onclick="return confirm('Yakin Ingin Hapus?')" class="remove-link">remove</a>
                                             <input type="checkbox" name="check[]" id="checkItem" value="<?php echo $row['id_cart'] ?>" style="width: 20px; height: 20px;">
@@ -113,18 +120,18 @@ include '../db.php';
 
                 <div class="total">
                     <span>subtotal:</span>
-                    <span style="text-transform: capitalize;">Rp. <?php echo number_format($totalHargaBarang) ?></span>
+                    <span id="subtotal" style="text-transform: capitalize;">Rp. <?php echo number_format($totalHargaBarang) ?></span>
                 </div>
 
                 <button class="submit-btn" type="submit" name="save">Proceed to Checkout</button>
 
                 <div class="accept-text">We accept</div>
                 <div class="payment-methods">
-                    <div class="peyment-items"></div>
-                    <div class="peyment-items"></div>
-                    <div class="peyment-items"></div>
-                    <div class="peyment-items"></div>
-                    <div class="peyment-items"></div>
+                    <div class="peyment-items" style="display: flex; justify-content:center; align-items:center;"><i class="fab fa-cc-visa" style="font-size: 2rem;"></i></div>
+                    <div class="peyment-items" style="display: flex; justify-content:center; align-items:center;"><i class="fab fa-cc-mastercard" style="font-size: 2rem;"></i></div>
+                    <div class="peyment-items" style="display: flex; justify-content:center; align-items:center;"><i class="fab fa-cc-paypal" style="font-size: 2rem;"></i></div>
+                    <div class="peyment-items" style="display: flex; justify-content:center; align-items:center;"><i class="fas fa-university" style="font-size: 2rem;"></i></div>
+                    <div class="peyment-items" style="display: flex; justify-content:center; align-items:center;"><i class="fas fa-qrcode" style="font-size: 2rem;"></i></div>
                 </div>
 
                 <div class="continue-line"></div>
@@ -159,6 +166,7 @@ include '../db.php';
             $id_productd = $_POST['id_product'];
             $admin_idd = $_POST['admin_id'];
             $id_cart_all = $_POST['id_cart_all']; // Dapatkan array semua id_cart dari form
+            $sizes = $_POST['size'];
 
             // Buat map dari id_cart ke indeks untuk mencari nilai jml, id_product, admin_id yang sesuai
             $cart_data_map = [];
@@ -166,7 +174,8 @@ include '../db.php';
                 $cart_data_map[$cart_id_value] = [
                     'jml' => $jmll[$index],
                     'id_product' => $id_productd[$index],
-                    'admin_id' => $admin_idd[$index]
+                    'admin_id' => $admin_idd[$index],
+                    'size' => $sizes[$index]
                 ];
             }
 
@@ -176,9 +185,10 @@ include '../db.php';
                     $jml = $data['jml'];
                     $id_product = $data['id_product'];
                     $admin_id = $data['admin_id'];
+                    $size = $data['size'];
 
                     // Insert into t_checkout_temp
-                    $insert_sql = "INSERT INTO t_checkout_temp (id_cart, id_product, jml, id_admin) VALUES ('$check_id', '$id_product', '$jml', '$admin_id')";
+                    $insert_sql = "INSERT INTO t_checkout_temp (id_cart, id_product, jml, id_admin, size) VALUES ('$check_id', '$id_product', '$jml', '$admin_id', '$size')";
                     if (!mysqli_query($conn, $insert_sql)) {
                         echo "<script>alert('Error inserting into checkout: " . mysqli_error($conn) . "');</script>";
                         break; // Stop jika ada error
@@ -202,33 +212,48 @@ include '../db.php';
     }
     ?>
     <script>
-        // Pilih semua kontrol jumlah produk
-        document.querySelectorAll('.quantity-control').forEach(control => {
-            const minusBtn = control.querySelector('.buttonq:first-child');
-            const plusBtn = control.querySelector('.buttonq:last-child');
-            const input = control.querySelector('input');
+    document.querySelectorAll('.quantity-control').forEach(control => {
+        const minusBtn = control.querySelector('.buttonq:first-child');
+        const plusBtn = control.querySelector('.buttonq:last-child');
+        const input = control.querySelector('input');
 
-
-            // Memastikan tombol ada sebelum menambahkan event listener
-            if (minusBtn) {
-                minusBtn.addEventListener('click', () => {
-                    console.log(input.value)
-                    let value = parseInt(input.value);
-                    if (value > parseInt(input.min)) {
-                        input.value = value - 1;
-                        console.log(input.value)
-                    }
-                });
-            }
-
-            if (plusBtn) {
-                plusBtn.addEventListener('click', () => {
-                    let value = parseInt(input.value);
-                    input.value = value + 1;
-                });
+        minusBtn.addEventListener('click', () => {
+            if (input.value > 1) {
+                input.value--;
+                updatePrices();
             }
         });
-    </script>
+
+        plusBtn.addEventListener('click', () => {
+            input.value++;
+            updatePrices();
+        });
+    });
+
+    function updatePrices() {
+        let subtotal = 0;
+        document.querySelectorAll('tr').forEach(row => {
+            const priceCell = row.querySelector('.product-price');
+            const qtyInput = row.querySelector('input[name="jml[]"]');
+            
+            if (priceCell && qtyInput) {
+                const unitPrice = parseInt(priceCell.dataset.price);
+                const qty = parseInt(qtyInput.value);
+                const total = unitPrice * qty;
+
+                priceCell.innerText = 'Rp.' + total.toLocaleString('id-ID');
+                subtotal += total;
+            }
+        });
+
+        // Update subtotal di bagian pembayaran
+        const subtotalElement = document.getElementById('subtotal');
+        if (subtotalElement) {
+            subtotalElement.innerText = 'Rp. ' + subtotal.toLocaleString('id-ID');
+        }
+    }
+</script>
+
 
 
 </body>

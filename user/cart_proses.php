@@ -5,6 +5,7 @@
         $product_id = $_POST['product_id'];
         $admin_id = $_POST['admin_id'];
         $stok = $_POST['stok'];
+        $size = $_POST['size'];
 
         if($stok < $jml){
             echo "
@@ -21,7 +22,7 @@
             </script>
             ";
         }else{
-            $insert = mysqli_query($conn, "INSERT INTO t_cart VALUES (null, '".$product_id."', '".$jml."', '".$admin_id."')");
+            $insert = mysqli_query($conn, "INSERT INTO t_cart VALUES (null, '".$product_id."', '".$jml."', '".$admin_id."', '".$size."')");
             if($insert){
                 echo "
                 <script>

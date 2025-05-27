@@ -43,7 +43,7 @@ include '../db.php';
                         <tbody>
                             <?php
                             $no = 1;
-                            $produk = mysqli_query($conn, "SELECT admin_name, phone, admin_address, (jml*product_price) AS total, date, id_checkout, product_name, product_price, product_image, jml, proof, validation, status FROM t_product, t_checkout, t_admin WHERE t_admin.id_admin = t_checkout.id_admin AND t_checkout.id_product = t_product.id_product AND status = 'batal'");
+                            $produk = mysqli_query($conn, "SELECT admin_name, phone, admin_address, (jml*product_price) AS total, date, id_checkout, product_name, product_price, product_image, jml, proof, validation, status FROM t_product, t_checkout, t_admin WHERE t_admin.id_admin = t_checkout.id_admin AND t_checkout.id_product = t_product.id_product AND status = 'batal'  ORDER BY product_name DESC");
                             if ($produk->num_rows == 0) {
                             ?>
                                 <tr>

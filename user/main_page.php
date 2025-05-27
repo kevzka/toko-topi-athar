@@ -186,12 +186,16 @@
                 <div class="container">
                     <?php include 'sidebar.php' ?>
         <div class="product-display">
-                <div class="accesoris">
-                    <img src="../gambar/rantai4.png" alt="">
-                    <img src="../gambar/rantai4.png" alt="">
-                    <img src="../gambar/rantai4.png" alt="">
-                    <img src="../gambar/rantai4.png" alt="">
-                </div>
+                <div class="accesoris" style="height: 200vh;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(0px); right: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(0px); left: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(187px); right: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(187px); left: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(374px); right: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(374px); left: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(561px); right: -37px;">
+                    <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(561px); left: -37px;">
+                <img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(748px); right: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(748px); left: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(935px); right: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(935px); left: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(1122px); right: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(1122px); left: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(1309px); right: -37px;"><img src="../gambar/rantai4.png" alt="" style="position: absolute; top: calc(1309px); left: -37px;"></div>
             </div>
     </div>
             </div>

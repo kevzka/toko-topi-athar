@@ -21,7 +21,7 @@
         <div class="section">
             <div class="container">
                 <?php
-                    $produk = mysqli_query($conn, "SELECT * FROM t_product WHERE product_id = '".$_GET['id']."'");
+                    $produk = mysqli_query($conn, "SELECT * FROM t_product WHERE id_product = '".$_GET['id']."'");
                     if(mysqli_num_rows($produk) == 0){
                         echo "
                         <script>
@@ -38,10 +38,10 @@
                         <select name="kategori" class="form-control" id="" required>
                             <option value="">--pilih--</option>
                             <?php
-                                $kategori = mysqli_query($conn, "SELECT * FROM t_category ORDER BY category_id DESC");
+                                $kategori = mysqli_query($conn, "SELECT * FROM t_category ORDER BY id_category DESC");
                                 while($r = mysqli_fetch_array($kategori)){
                             ?>
-                            <option value="<?php echo $r['category_id'] ?>" <?php echo ($r['category_id'] == $p->category_id) ? 'selected' : '';?>>
+                            <option value="<?php echo $r['id_category'] ?>" <?php echo ($r['id_category'] == $p->id_category) ? 'selected' : '';?>>
                                 <?php echo $r['category_name'] ?>
                             </option>
                             <?php
@@ -82,6 +82,10 @@
                         </select>
                     </fieldset>
                     <fieldset>
+                        <label for="">color</label>
+                        <input type="text" name='color' value="<?php echo $p->color ?>" class="form-control" required>
+                    </fieldset>
+                    <fieldset>
                         <button name="submit" type="submit" class="btn" id="contact-submit" data-submit="...sending">Edit</button>
                     </fieldset>
                 </form>
@@ -95,6 +99,7 @@
                         $status = $_POST['status'];
                         $foto = $_POST['foto'];
                         $stok = $_POST['stok'];
+                        $color = $_POST['color'];
 
                         $filename = $_FILES['gambar']['name'];
                         $tmp_name = $_FILES['gambar']['tmp_name'];
@@ -121,14 +126,15 @@
                             $namagambar = $foto;
                         }
                         $update = mysqli_query($conn, "UPDATE t_product SET
-                        category_id = '".$kategori."',
+                        id_category = '".$kategori."',
                         product_name = '".$nama."',
                         product_price = '".$harga."',
                         product_description = '".$deskripsi."',
                         product_image = '".$namagambar."',
                         product_status = '".$status."',
-                        stok = '".$stok."'
-                        WHERE product_id = '".$p->product_id."'
+                        product_stock = '".$stok."',
+                        color = '".$color."'
+                        WHERE id_product = '".$p->id_product."'
                         ");
                         if($update){
                             echo "

@@ -19,7 +19,7 @@
         <div class="section">
             <div class="container">
                 <?php
-                    $kategori = mysqli_query($conn, "SELECT * FROM t_category WHERE category_id = '".$_GET['id']."'");
+                    $kategori = mysqli_query($conn, "SELECT * FROM t_category WHERE id_category = '".$_GET['id']."'");
                     if(mysqli_num_rows($kategori) == 0){
                         echo "
                         <script>

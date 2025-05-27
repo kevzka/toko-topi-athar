@@ -357,7 +357,6 @@ body {
 .pembayaran .card .payment-methods .peyment-items {
 	width: 50px;
 	height: 30px;
-	background-color: red; /* Ini bisa diganti dengan gambar atau warna sesuai ikon pembayaran */
 }
 
 .pembayaran .card .continue-line {

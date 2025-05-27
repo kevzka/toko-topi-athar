@@ -44,7 +44,7 @@ include '../db.php';
                             <?php
                             $no = 1;
                             $admin_id = $_SESSION['id_login'];
-                            $produk = mysqli_query($conn, "SELECT (c.jml * p.product_price) AS total, c.date, c.id_checkout, cat.category_name, p.product_name, p.product_price, p.product_image, c.jml, c.proof, c.validation, c.status, c.id_checkout FROM t_checkout c JOIN t_product p ON c.id_product = p.id_product JOIN t_category cat ON p.id_category = cat.id_category WHERE c.status != 'Selesai' AND c.status != 'Batal' AND c.id_admin = $admin_id");
+                            $produk = mysqli_query($conn, "SELECT (c.jml * p.product_price) AS total, c.date, c.id_checkout, cat.category_name, p.product_name, p.product_price, p.product_image, c.jml, c.proof, c.validation, c.status, c.id_checkout FROM t_checkout c JOIN t_product p ON c.id_product = p.id_product JOIN t_category cat ON p.id_category = cat.id_category WHERE c.status != 'Selesai' AND c.status != 'Batal' AND c.id_admin = $admin_id ORDER BY p.product_name ASC");
                             if ($produk->num_rows == 0) {
                             ?>
                                 <tr>

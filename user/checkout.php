@@ -75,7 +75,7 @@ include '../db.php';
                         <?php
                         $no = 1;
                         $admin_id = $_SESSION['id_login'];
-                        $produk = mysqli_query($conn, "SELECT t_checkout_temp.id_product, (jml*product_price) AS total, id_cart, category_name, product_name, product_price, product_image, jml FROM t_product, t_category, t_checkout_temp WHERE t_category.id_category = t_product.id_category AND t_checkout_temp.id_product = t_product.id_product AND id_admin = $admin_id");
+                        $produk = mysqli_query($conn, "SELECT t_checkout_temp.id_product, (jml*product_price) AS total, id_cart, category_name, product_name, product_price, product_image, jml, size, color FROM t_product, t_category, t_checkout_temp WHERE t_category.id_category = t_product.id_category AND t_checkout_temp.id_product = t_product.id_product AND id_admin = $admin_id");
                         while ($row = mysqli_fetch_array($produk)) {
                         ?>
                             <tr>
@@ -85,8 +85,8 @@ include '../db.php';
                                     </div>
                                     <div class="product-details">
                                         <div class="product-title"><?php echo $row['product_name'] ?></div>
-                                        <div class="product-description" style="text-transform: capitalize;">Color: [black]</div>
-                                        <div class="product-description" style="text-transform: capitalize;">Size: [kids]</div>
+                                        <div class="product-description" style="text-transform: capitalize;">Color: <?php echo $row['color'] ?></div>
+                                        <div class="product-description" style="text-transform: capitalize;">Size: <?php echo $row['size'] ?></div>
                                         <div style="text-transform: capitalize;" class="product-description">Price: Rp.<?php echo number_format($row['total']) ?></div>
                                     </div>
                                 </td>
@@ -169,7 +169,10 @@ include '../db.php';
     </div>
     <?php
     $fakeTrue = true;
-    foreach($_POST['fake'] as $i){
+    
+
+        if (isset($_POST['proses'])) {
+            foreach($_POST['fake'] as $i){
         if(strlen($i) == 0){
             $fakeTrue = false;
         }
@@ -179,8 +182,6 @@ include '../db.php';
             alert('masukan lokasi pengiriman');
         </script>";
     } else {
-
-        if (isset($_POST['proses'])) {
             $tgl = date('Y-m-d');
             $filename = $_FILES['gambar']['name'];
             $tmp_name = $_FILES['gambar']['tmp_name'];

@@ -68,7 +68,7 @@ include '../db.php';
                                         <td>
                                             <div class="quantity-control">
                                                 <button type="button" class="buttonq">-</button>
-                                                <input type="number" value="<?php echo $row['jml'] ?>" min="1" name="jml[]" style="border-right: 2px solid #ccc; border-left: 2px solid #ccc;">
+                                                <input type="number" value="<?php echo $row['jml'] ?>" min="1" name="jml[]" style="">
                                                 <button type="button" class="buttonq">+</button>
                                                 </div>
                                             <a href="hapus_proses.php?idc=<?php echo $row['id_cart'] ?>" onclick="return confirm('Yakin Ingin Hapus?')" class="remove-link">remove</a>

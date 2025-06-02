@@ -65,6 +65,10 @@
                         </select>
                     </fieldset>
                     <fieldset>
+                        <label for="">color</label>
+                        <input type="text" name='color' class="form-control" required>
+                    </fieldset>
+                    <fieldset>
                         <button name="submit" type="submit" class="btn" id="contact-submit" data-submit="...sending">Tambah</button>
                     </fieldset>
                 </form>
@@ -76,6 +80,7 @@
                         $stok = $_POST["stok"];
                         $deskripsi = $_POST["deskripsi"];
                         $status = $_POST["status"];
+                        $color = $_POST["color"];
 
                         $filename = $_FILES['gambar']['name'];
                         $tmp_name = $_FILES['gambar']['tmp_name'];
@@ -95,7 +100,7 @@
                         }else{
                             move_uploaded_file($tmp_name, '../produk/'. $newname);
 
-                            $insert = mysqli_query($conn, "INSERT INTO t_product VALUES (null, '$kategori', '$nama', '$deskripsi', '$newname', '$status', null, '$harga', '$stok')");
+                            $insert = mysqli_query($conn, "INSERT INTO t_product VALUES (null, '$kategori', '$nama', '$deskripsi', '$newname', '$status', null, '$harga', '$stok', '$color')");
                             if($insert){
                                 echo "
                                 <script>
